@@ -5,8 +5,11 @@ Tracking code associated with the manuscript Cell cycle-dependent active stress 
 Code can be run on matlab and requires several scripts available on the matlab file exchange:
 
 Phase Stretch Transform - https://www.mathworks.com/matlabcentral/fileexchange/55330-jalalilabucla-image-feature-detection-using-phase-stretch-transform
+
 Simple Tracker - https://www.mathworks.com/matlabcentral/fileexchange/34040-simpletracker
+
 Edge Linking and Line Segment Fitting - https://www.peterkovesi.com/matlabfns/
+
 Uniform colormaps - https://www.mathworks.com/matlabcentral/fileexchange/51986-perceptually-uniform-colormaps
 
 
@@ -17,6 +20,7 @@ Segmentation:
 outlineCells13t - function for segmenting cell images. Mainly based on PST to generate initial segmentation then cleans up partial edges and filters out some potential segmentation errors. Includes optimized parameters for 20x images of MDCK stargazin gfp used in the paper.
 
 outlinecellstack - runs outlinecells13t over an image stack and saves segmented images
+
 outlineFnuc - uses PST to segment nuceli from fucci labeled cells. runs on an image stack and produces a stack of segmented images
 
 Tracking:
