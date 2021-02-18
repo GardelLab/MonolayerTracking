@@ -51,15 +51,7 @@ function bw = filledgegaps(bw, gapsize)
 
     [rows, cols] = size(bw);
     
-    % Generate a binary circle with radius gapsize/2 (but not less than 1)
-%     if gapsize == 3
-%     blob = [[0,0,1,1,1,0,0];[0,1,1,1,1,1,0];[1,1,1,1,1,1,1];[1,1,1,1,1,1,1];...
-%         [1,1,1,1,1,1,1];[0,1,1,1,1,1,0];[0,0,1,1,1,0,0]];
-%     else
-%         blob = [[0,0,1,1,1,1,1,0,0];[0,1,1,1,1,1,1,1,0];[1,1,1,1,1,1,1,1,1];...
-%             [1,1,1,1,1,1,1,1,1];[1,1,1,1,1,1,1,1,1];[1,1,1,1,1,1,1,1,1];...
-%             [1,1,1,1,1,1,1,1,1];[0,1,1,1,1,1,1,1,0];[0,0,1,1,1,1,1,0,0]];
-%     end
+    
    blob{1} = [[1,0,0];[0,1,0];[0,0,1]];  
    blob{2} = [[0,1,0];[0,1,0];[0,1,0]];  
    blob{3} = [[0,0,1];[0,1,0];[1,0,0]];  
@@ -69,59 +61,27 @@ function bw = filledgegaps(bw, gapsize)
    blob{8} = blob{2};
    blob{9} = blob{1};
 
-    %blobs = strel('disk',round(gapsize/2));
-    %blob = blobs.Neighborhood;
     for i = [1:4,6:9]
     blob{i} = im2bw(imresize(blob{i},[gapsize+1,gapsize+1]),0.2);
     end
         
-    %rad = (size(blob,1)-1)/2;  % Radius of resulting blob matrix. Note
-                               % circularstruct returns an odd sized matrix
-    
     
     % Get coordinates of end points and of isolated pixels
     endpoints = classifyendpoints(bw);
-    %[ri, ci] = findisolatedpixels(bw);
+  
     
-%     re = [re;ri];
-%     ce = [ce;ci];
-% endpoints(1,1)-gapsize/2:endpoints(1,1)+gapsize/2
-% blob{endpoints(1,3)}
+
     % Place a circular blob at every endpoint and isolated pixel
     for n = 1:length(endpoints)
         
-%         if (re(n) > rad) && (re(n) < rows-rad) && ...
-%                 (ce(n) > rad) && (ce(n) < cols-rad)
 
             bw(endpoints(n,1)-gapsize/2:endpoints(n,1)+gapsize/2, endpoints(n,2)-gapsize/2:endpoints(n,2)+gapsize/2) = ...
                 bw(endpoints(n,1)-gapsize/2:endpoints(n,1)+gapsize/2, endpoints(n,2)-gapsize/2:endpoints(n,2)+gapsize/2) | blob{endpoints(n,3)};
-%         end
+
     end
     
     
     
     bw = bwmorph(bw, 'thin', inf);  % Finally thin
-%     figure
-%     imshowpair(bw,bw1)
-    % At this point, while we may have joined endpoints that were close together
-    % we typically have also generated a number of small loops where there were
-    % more than one endpoint close to an edge.  To address this we identfy the
-    % loops by finding 4-connected blobs in the inverted image.  Blobs that are
-    % less than or equal to the size of the blobs we used to link edges are
-    % filled in, the image reinverted and then rethinned.
+
     
-%     L = bwlabel(~bw,4); 
-%     stats = regionprops(L, 'Area');
-%     
-%     % Get blobs with areas <= pi* (gapsize/2)^2
-%     ar = cat(1,stats.Area);
-%     ind = find(ar <= pi*(gapsize/2)^2);
-%     
-%     % Fill these blobs in image bw
-%     for n = ind'
-%         bw(L==n) = 1;
-%     end
-%     
-%     
-%     bw = bwmorph(bw, 'thin', inf);  % thin again
-%     
