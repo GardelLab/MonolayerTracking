@@ -19,6 +19,10 @@ Segmentation:
 
 outlineCells13t - function for segmenting cell images. Mainly based on PST to generate initial segmentation then cleans up partial edges and filters out some potential segmentation errors. Includes optimized parameters for 20x images of MDCK stargazin gfp used in the paper.
 
+findendsjunctions2 - modified version of findendsjunction from Peter Kovesi 
+
+filledgegaps4 - modified version of filledgegaps from Peter Kovesi, uses and anisotropic blob instead of a circular blob to connect edges. Since the junctions are straight lines this works better than a round blob. 
+
 outlinecellstack - runs outlinecells13t over an image stack and saves segmented images
 
 outlineFnuc - uses PST to segment nuceli from fucci labeled cells. runs on an image stack and produces a stack of segmented images
