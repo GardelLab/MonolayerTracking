@@ -2,6 +2,10 @@
 
 
 Tracking code associated with the manuscript Cell cycle-dependent active stress drives epithelia remodeling doi: https://doi.org/10.1101/804294 
+
+Code written by John Devany
+Contact - jdevany@uchicago.edu
+
 Code can be run on matlab and requires several scripts available on the matlab file exchange:
 
 Phase Stretch Transform - https://www.mathworks.com/matlabcentral/fileexchange/55330-jalalilabucla-image-feature-detection-using-phase-stretch-transform
