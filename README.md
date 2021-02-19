@@ -3,8 +3,7 @@
 
 Tracking code associated with the manuscript Cell cycle-dependent active stress drives epithelia remodeling doi: https://doi.org/10.1101/804294 
 
-Code written by John Devany
-Contact - jdevany@uchicago.edu
+Code written by John Devany - jdevany@uchicago.edu
 
 Code can be run on matlab and requires several scripts available on the matlab file exchange:
 
